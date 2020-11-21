@@ -15,6 +15,6 @@ var Coffee = sequelize.define("coffees", {
   // Syncs with DB
   Coffee.sync();
   
-  // Makes the Character Model available for other files (will also create a table)
+  // Makes the Coffee Model available for other files (will also create a table)
   module.exports = Coffee;
   

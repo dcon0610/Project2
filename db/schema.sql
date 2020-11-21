@@ -12,8 +12,8 @@ CREATE TABLE coffees (
 -- had to change from description to coffee_description as 
 -- 'description' is a reserved word
     price DECIMAL(10,2),
-    grams INT,
-    img VARCHAR(200),
+    weight_grams INT NOT NULL,
+    img URL,
     PRIMARY KEY (id)
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE users (
 
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT NOT NULL,
-    rating DECIMAL(3,2) UNSIGNED, 
+    rating DECIMAL(3,2) UNSIGNED NOT NULL DEFAULT 0, 
     -- to display 0.00 eg 4.75 (unsigned for positive values only)
     review_text TEXT,
     user_id INT NOT NULL,
