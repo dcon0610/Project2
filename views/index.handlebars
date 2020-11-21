@@ -2,36 +2,45 @@
 
 <!-- if we want, we can further split out the review panes into their own template via Partials: https://handlebarsjs.com/guide/partials.html -->
 
-<header> <!-- header area -->
+<header class="header"> <!-- header area -->
     <h1>
-        <span>{{coffee icon}}</span> Coffee Rater
+        <span>{coffee icon}</span> Coffee Rater
     </h1>
 </header>
+<div class="container-fluid">
+    <div class="row">
+        <main class="col-9"><!-- main content area -->
+            <p>To see individual reviews, click to expand on a coffee.</p>
+            <ul class="list-group">
+                {{#each coffee}}
+                    {{> coffee/coffee_card}}
+                {{/each}}           
+            </ul>
+        </main>
 
-<main> <!-- main content area -->
-    <p>To see individual reviews, click to expand on a coffee.</p>
-    <ul>
-        {{#each coffee}}
-            {{> coffee/coffee_card}}
-        {{/each}}
-    </ul>
-</main>
-<!-- side bar -->
-<aside>
-    <h5>Add a coffee</h5>
-    <form> <!-- form for submitting a coffee for review -->
-    <label>Name of Blend:</label>
-    <input type="text" name="blend">
-    
-    <label>Brand:</label>
-    <input type="text" name="brand">
-    
-    <label>Description:</label>
-    <input type="text" name="coffee-description">
-    
-    <label>Price:</label>
-    <input type="text" name="price">
-    <label>Grams:</label>
-    <input type="text" name="grams">
-    </form>
-</aside>
+        <!-- side bar -->
+        <aside class="col-3" id="newCoffeePanel">
+            <h5>Add a coffee</h5>
+            <hr>
+            <form id="addCoffeeForm"> <!-- form for submitting a coffee for review -->
+                <div class="form-group">
+                    <label for="formBlendInput">Name of Blend:</label>
+                    <input type="text" name="blend" id="formBlendInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="formBrandInput">Brand:</label>
+                    <input type="text" name="brand" id="formBrandInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="formDescriptionInput">Description:</label>
+                    <textarea name="coffee-description" id="formDescriptionInput" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formPriceInput">Price:</label>
+                    <input type="number" min="0" name="price" id="formPriceInput" class="form-control">
+                    <label for="formGramsInput">Grams:</label>
+                    <input type="number" min="0" name="grams" id="formGramsInput" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-custom" id="coffeeSubmitBtn">Submit Coffee</button>
+            </form>
+        </aside>
