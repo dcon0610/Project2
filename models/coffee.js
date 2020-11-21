@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../config/connection.js");
+const db = require("../models/index.js")
 
 var Coffee = sequelize.define("coffees", {
     blend_name: Sequelize.STRING,
