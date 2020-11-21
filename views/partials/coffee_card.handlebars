@@ -1,0 +1,42 @@
+<li>
+    <!-- Coffee panels go here. Probably will be cards in end product. -->
+    <div class="card">
+        <div class="row">
+            <div class="col-3"> <!-- image pane --> 
+                {image}
+            </div>
+            <div class="col-6"> <!-- main coffee content pane -->
+                <h4><strong>{Blend Name}</strong> <em>by</em> <strong>{Brand Name}</strong></h4>
+                <p>{description}</p>
+            </div>
+            <div class="col-3"> <!-- details pane -->
+                <div class="row"> <!-- rating -->
+                    <p><strong>{average rating}</strong> /5 </p>
+                </div>
+                <div class="row"> <!-- price -->
+                    <p><strong>${price}</strong> <em>{grams} g</em> </p>
+                </div>
+            </div>
+        </div>
+        <!-- expand section for relevant reviews -->
+        <a> V click to expand for reviews</a>
+        <div>
+            <div class="row">
+                <!-- reviews go here -->
+                {#each review}
+                <ul>
+                    {> review_card}
+                </ul>
+                {/each}  
+            </div>
+            <div class="row"> <!-- add a review for this coffee -->
+                <form>
+                    <label>Your name:</label>
+                    <input type="text" name ="user_name">
+
+                    <label>Your review:</label>
+                    <input type="text" name="review_text">
+                </form>
+            </div>
+    </div>
+</li>

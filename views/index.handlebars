@@ -4,43 +4,34 @@
 
 <header> <!-- header area -->
     <h1>
-        Coffee Reviews
+        <span>{coffee icon}</span> Coffee Rater
     </h1>
-    <p>Welcome to Coffee Reviews! Here you can read and submit reviews for various kinds of coffee.</p>
 </header>
 
 <main> <!-- main content area -->
     <p>To see individual reviews, click to expand on a coffee.</p>
     <ul>
-        <li>
-            <!-- Coffee panels go here. Probably will be cards in end product. -->
-            <h4><em>{Blend Name}</em> by <em>{Brand Name}</em></h4>
-            <table>
-                <tr>
-                    <td>
-                        $ {Price/grams} /gram
-                    </td>
-                    <td><strong>{average rating}</strong> /5 </td>
-                </tr>
-                <tr>
-                    <td> {image} </td>
-                    <td>{description}</td>
-                </tr>
-            </table>
-            <p>Click something here to expand to view reviews</p>
-            <table>
-                <tr>
-                    <td> <!-- a review panel. likewise, probably more like a card than a table-->
-                        <tr>
-                            <td>{user name}</td>
-                            <td> {review rating}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">{review text}</td>
-                        </tr>
-                    </td>
-                </tr>
-            </table>
-        </li>
+        {#each coffee}
+            {> coffee_card partial}
+        {/each}
     </ul>
 </main>
+<!-- side bar -->
+<aside>
+    <h5>Add a coffee</h5>
+    <form> <!-- form for submitting a coffee for review -->
+    <label>Name of Blend:</label>
+    <input type="text" name="blend">
+    
+    <label>Brand:</label>
+    <input type="text" name="brand">
+    
+    <label>Description:</label>
+    <input type="text" name="coffee-description">
+    
+    <label>Price:</label>
+    <input type="text" name="price">
+    <label>Grams:</label>
+    <input type="text" name="grams">
+    </form>
+</aside>
