@@ -4,16 +4,16 @@
 
 <header> <!-- header area -->
     <h1>
-        <span>{coffee icon}</span> Coffee Rater
+        <span>{{coffee icon}}</span> Coffee Rater
     </h1>
 </header>
 
 <main> <!-- main content area -->
     <p>To see individual reviews, click to expand on a coffee.</p>
     <ul>
-        {#each coffee}
-            {> coffee_card partial}
-        {/each}
+        {{#each coffee}}
+            {{> coffee/coffee_card}}
+        {{/each}}
     </ul>
 </main>
 <!-- side bar -->
