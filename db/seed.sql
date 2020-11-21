@@ -5,9 +5,19 @@ INSERT INTO coffees (blend_name, brand, coffee_description, price, img)
     15, 250, "https://s28268.pcdn.co/wp-content/uploads/timber/c8e1726d6b75333faf24575624d2b6e0-600x0-c-default.png");
 
 INSERT INTO users (user_name) VALUES
-    ("McScruffy54");
+    ("McScruffy54"),
+    ("DogLEGs4evR"),
+    ("TheBeaninator"),
+    ("leBeanboy"),
+    ("fresh_AS_it_GETS"),
+    ("cup_o_JOE"),
+    ("morning brown");
 
 INSERT INTO reviews (rating, review_text, user_id, coffee_id) VALUES   
     (4.5, 
         "Shifting, original, startling in its giddy intricacy. Winey pine (think retsina wine), cocoa powder, green apple, Concord grape, ginger blossom, much more in aroma and cup. Sweetly and delicately pungent in structure. Lightly syrupy and almost effervescently buoyant in mouthfeel. The winey pine character and a floral sweetness carry persuasively into a crisp finish.",
-    1, 1);
+    1, 1),
+    (4.5, 
+        "Shifting, original, startling in its giddy intricacy. Winey pine (think retsina wine), cocoa powder, green apple, Concord grape, ginger blossom, much more in aroma and cup. Sweetly and delicately pungent in structure. Lightly syrupy and almost effervescently buoyant in mouthfeel. The winey pine character and a floral sweetness carry persuasively into a crisp finish.",
+    1, 1)
+    ;
