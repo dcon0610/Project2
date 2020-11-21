@@ -7,15 +7,15 @@
                         {image}
                     </div>
                     <div class="col-6"> <!-- main coffee content pane -->
-                        <h4><strong>{Blend Name}</strong> <em>by</em> <strong>{Brand Name}</strong></h4>
-                        <p>{description}</p>
+                        <h4><strong>{{blendName}}</strong> <em>by</em> <strong>{{brandName}}</strong></h4>
+                        <p>{{description}}</p>
                     </div>
                     <div class="col-3"> <!-- details pane -->
                         <div class="row"> <!-- rating -->
-                            <p><h4>{average rating}</h4> /5 </p>
+                            <p><h4>{{averageRating}}</h4> /5 </p>
                         </div>
                         <div class="row"> <!-- price -->
-                            <p><strong>${price}</strong> <em>{grams} g</em> </p>
+                            <p><strong>${{price}}</strong> <em>{{grams}} g</em> </p>
                         </div>
                     </div>
                 </div>
