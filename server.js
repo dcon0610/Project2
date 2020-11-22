@@ -1,4 +1,5 @@
 const express = require("express");
+const db = require("./models/index.js");
 
 var PORT = process.env.PORT || 3001;
 
@@ -17,13 +18,13 @@ app.set("view engine", "handlebars");
 
 
 var routes = require("./controllers/controller.js");
-//const db = require("./models/index.js");
+
 
 app.use(routes);
 
 
-//db.sequelize.sync().then(function() {
-app.listen(PORT, function() {
-  console.log("App now listening at localhost:" + PORT);
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App now listening at localhost:" + PORT);
+  });
 });
-//})
