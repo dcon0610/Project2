@@ -4,8 +4,8 @@ var router = express.Router();
 
 // Import the model (cat.js) to use its database functions.
 //using mock data atm; uncomment when sequelize is working
-//var coffee = require("../models/Coffee.js");
-
+var coffee = require("../models/Coffee.js");
+console.log(coffee)
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
