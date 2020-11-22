@@ -4,30 +4,33 @@ var router = express.Router();
 
 // Import the model (cat.js) to use its database functions.
 //using mock data atm; uncomment when sequelize is working
-//var coffee = require("../models/Coffee.js");
-
+var coffee = require("../models/Coffee.js");
+console.log(coffee)
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
 
   var hbsObject = {
-    review:[
-      {id: 1, userName: 'David', reviewBody: 'this is an awesome coffee', rating:3},
-      {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4},
-      {id: 3, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 5}
+  //   review:[
+  //     {id: 1, userName: 'David', reviewBody: 'this is an awesome coffee', rating:3},
+  //     {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4},
+  //     {id: 3, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 5}
   
   
   
-  ],
+  // ],
 
 
 
 
       coffee: [ 
-        {blendName: "Instant", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100},
-        {blendName: "Arabica", brandname: "B3", description: "yummy", averageRating: "4", price: 60, grams: 100},
-        {blendName: "New Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100},
-        {blendName: "Stale Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100}
+        {blendName: "Instant", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[
+          {id: 1, userName: 'David', reviewBody: 'this is an awesome coffee', rating:3}]},
+        {blendName: "Arabica", brandname: "B3", description: "yummy", averageRating: "4", price: 60, grams: 100, 
+          review:[{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},
+          {id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4}]},
+        {blendName: "New Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4}]},
+        {blendName: "Stale Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 4}]}
 
       ],
 
