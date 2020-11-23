@@ -45,9 +45,9 @@ router.get("/", function(req, res) {
 router.post("/api/coffees", function(req, res) {
   // create new coffee in db
   db.Coffee.create({
-    blend_name:         req.body.blend_name,
+    blend_name:         req.body.name,
     brand:              req.body.brand,
-    coffee_description: req.body.coffee_description,
+    coffee_description: req.body.description,
     price:              req.body.price,
     weight_grams:       req.body.grams,
     img:                req.body.img
