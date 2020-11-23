@@ -8,32 +8,27 @@ var db = require("../models");
 router.get("/", function(req, res) {
 
   // get data for coffees from db
-  db.Coffee.findAll().then(function(dbCoffees){
-    console.log(dbCoffees);
-  });
 
   // get all coffees with reviews
   db.Coffee.findAll({ include: [{
+                            
                               model: db.Review,
                               include: [
                                 {
                                   model: db.User
                                 }
                               ]
-                            }]
+                            }], 
+                            raw: true
                           })
     .then(function(dbReviews){
-    console.log(JSON.stringify(dbReviews, null, 2));
+      var hbsObject ={coffee: dbReviews}
+      console.log("this is the returned value:",dbReviews) ;
+      res.render("index", hbsObject);
+
     });
 
-  var hbsObject = {
-  }
-
-   
-
-     res.render("index", hbsObject);
-
-    })
+  })
  
 
 

@@ -1,30 +1,32 @@
 <li>
     <!-- Coffee panels go here -->
-        <div class="card coffeeCard">
+        <div class="card mb-3 coffeeCard">
             <div class="card-body">
                 <div class="row">
                     <div class="col-3"> <!-- image pane --> 
-                        {image}
+
+                        <img src="{{img}}" max-height="4rem">
+
                     </div>
                     <div class="col-6"> <!-- main coffee content pane -->
-                        <h4><strong>{{blendName}}</strong> <em>by</em> <strong>{{brandName}}</strong></h4>
-                        <p>{{description}}</p>
+                        <h4><strong>{{blend_name}}</strong> <em>by</em> <strong>{{brand}}</strong></h4>
+                        <p>{{coffee_description}}</p>
                     </div>
                     <div class="col-3"> <!-- details pane -->
                         <div class="row"> <!-- rating -->
                             <p><h4>{{averageRating}}</h4> /5 </p>
                         </div>
                         <div class="row"> <!-- price -->
-                            <p><strong>${{price}}</strong> <em>{{grams}} g</em> </p>
+                            <p><strong>${{price}}</strong> <em>{{weight_grams}} g</em> </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- expand section for relevant reviews -->
-                {{!-- <a data-toggle="collapse" href="#collapseReviews" class="reviewsCollapserLink"> V click to expand for reviews</a>
-                <div id="collapseReviews" class="collapse">
-                    <div class="row">
-                        <div clas="col-12">
+                <a data-toggle="collapse" href="#toggleReviews{{id}}" class="reviewsCollapserLink">- click here to show/hide reviews -</a>
+                <div id="toggleReviews{{id}}" class="collapse">
+                    <div class="row"> <!-- reviews section -->
+                        <div class="col-12">
                             <ul class="list-group">
                                 {{#each review}}
                                     {{> coffee/review_card}}
@@ -34,20 +36,24 @@
                     </div>
                     
                     <div class="row"> <!-- add a review for this coffee -->
-                        <form class="col-12">
+                        <form class="col-12" id="reviewForm{{id}}">
                             <h5>Review this coffee:</h5>
                             <div class="form-group">
-                                <label for="reviewInputUserName">Your name:</label>
-                                <input type="text" name ="user_name" id="reviewInputUserName" class="form-control">
+                                <label for="reviewInputUserName{{id}}">Your name:</label>
+                                <input type="text" name="user_name" id="reviewInputUserName{{id}}" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="reviewInputTextbox">Your review:</label>
-                                <textarea id="reviewInputTextbox" name="review_text" class="form-control"></textarea>
+                                <label for="reviewInputRating{{id}}">Your rating:</label>
+                                <input type ="number" min="0" id="reviewInputRating{{id}}" name="review_rating" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewInputTextbox{{id}}">Your review:</label>
+                                <textarea id="reviewInputTextbox{{id}}" name="review_text" class="form-control"></textarea>
                             </div>        
-                            <button type="submit" class="btn btn-custom">Submit Review</button>
+                            <button id="submitReview{{id}}" type="submit" class="submitReviewBtn btn btn-custom">Submit Review</button>
                         </form>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
 </li>
