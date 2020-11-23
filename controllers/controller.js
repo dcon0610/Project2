@@ -2,13 +2,18 @@ var express = require("express");
 
 var router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
-//using mock data atm; uncomment when sequelize is working
-var coffee = require("../models/Coffee.js");
+// load models eg db.Coffee
+var db = require("../models");
+
 console.log(coffee)
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
+
+  // get data for coffees from db
+  db.Coffee.findAll().then(function(dbCoffees){
+    console.log(dbCoffees);
+  })
 
   var hbsObject = {
   //   review:[
@@ -46,7 +51,17 @@ router.get("/", function(req, res) {
 
 
 router.post("/api/coffees", function(req, res) {
-  //coffee.create();
+  // create new coffee in db
+  db.Coffee.create({
+    blend_name:         req.body.blend_name,
+    brand:              req.body.brand,
+    coffee_description: req.body.coffee_description,
+    price:              req.body.price,
+    weight_grams:       req.body.grams,
+    img:                req.body.img
+  }).then(function(dbCoffee){
+    console.log(dbCoffee);
+  })
 });
 
 //router.put("/api/coffees/:id", function(req, res) {
