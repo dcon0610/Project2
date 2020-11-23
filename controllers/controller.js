@@ -36,7 +36,7 @@ router.get("/", function(req, res) {
 
   }
 
-    console.log(hbsObject)
+   
 
      res.render("index", hbsObject);
 
@@ -45,9 +45,24 @@ router.get("/", function(req, res) {
 
 
 
-router.post("/api/coffees", function(req, res) {
+router.post("/coffee/add-review", function(req, res) {
+
+
+console.log("received post", req.body)
+const id =  1
+res.json({"working": id})
   //coffee.create();
 });
+
+
+router.post("/coffee/add-coffee", function(req, res) {
+
+
+  console.log("received post", req.body)
+  const id =  1
+  res.json({"working": 24})
+    //coffee.create();
+  });
 
 //router.put("/api/coffees/:id", function(req, res) {
 //   var condition = "id = " + req.params.id;
