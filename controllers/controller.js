@@ -11,7 +11,21 @@ router.get("/", function(req, res) {
   // get data for coffees from db
   db.Coffee.findAll().then(function(dbCoffees){
     console.log(dbCoffees);
-  })
+  });
+
+  // get all coffees with reviews
+  db.Coffee.findAll({ include: [{
+                              model: db.Review,
+                              include: [
+                                {
+                                  model: db.User
+                                }
+                              ]
+                            }]
+                          })
+    .then(function(dbReviews){
+    console.log(JSON.stringify(dbReviews, null, 2));
+    });
 
   var hbsObject = {
   //   review:[
@@ -26,16 +40,16 @@ router.get("/", function(req, res) {
 
 
 
-      coffee: [ 
-        {blendName: "Instant", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[
-          {id: 1, userName: 'David', reviewBody: 'this is an awesome coffee', rating:3}]},
-        {blendName: "Arabica", brandname: "B3", description: "yummy", averageRating: "4", price: 60, grams: 100, 
-          review:[{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},
-          {id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4}]},
-        {blendName: "New Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4}]},
-        {blendName: "Stale Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 4}]}
+      // coffee: [ 
+      //   {blendName: "Instant", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[
+      //     {id: 1, userName: 'David', reviewBody: 'this is an awesome coffee', rating:3}]},
+      //   {blendName: "Arabica", brandname: "B3", description: "yummy", averageRating: "4", price: 60, grams: 100, 
+      //     review:[{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},
+      //     {id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4}]},
+      //   {blendName: "New Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4}]},
+      //   {blendName: "Stale Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 4}]}
 
-      ],
+      // ],
 
   }
 
