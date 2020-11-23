@@ -14,38 +14,7 @@
             <ul class="list-group">
                 {{#each coffee}}
                     {{> coffee/coffee_card}}
-                        <a data-toggle="collapse" href="#toggleelement{{id}}" class="reviewsCollapserLink"> V click to expand for reviews</a>
-                <div id="toggleelement{{id}}" class="collapse">
-                    <div class="container-fluid">
-                    <div class="row list-group">
-                        <div clas="col-12">
-                            <ul >
-                                {{#each review}}
-                                    {{> coffee/review_card}}
-                                {{/each}}
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="row"> <!-- add a review for this coffee -->
-                        <form class="col-12">
-                            <h5>Review this coffee:</h5>
-                            <div class="form-group">
-                                <label for="reviewInputUserName">Your name:</label>
-                                <input id="name{{id}}" type="text" name ="user_name" id="reviewInputUserName" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="reviewInputTextbox">Your review:</label>
-                                <textarea id="review{{id}}" name="review_text" class="form-control"></textarea>
-                            </div>        
-                            <button id={{id}} type="submit" class="btn btn-custom">Submit Review</button>
-                        </form>
-                    </div>
-                    </div>
-                </div>
-                {{/each}}    
-
-                    
+                {{/each}}                   
             </ul>
         </main>
 
@@ -53,29 +22,31 @@
         <aside class="col-3" id="newCoffeePanel">
             <h5>Add a coffee</h5>
             <hr>
-            <form id="addCoffeeForm"> <!-- form for submitting a coffee for review -->
+            <form> <!-- form for submitting a coffee for review -->
                 <div class="form-group">
-                    <label for="name">Name of Blend:</label>
-                    <input type="text" name="name" id="name" class="form-control">
+
+                    <label for="formNameInput">Name of Blend:</label>
+                    <input type="text" name="name" id="formNameInput" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="brand">Brand:</label>
-                    <input type="text" name="brand" id="brand" class="form-control">
+                    <label for="formBrandInput">Brand:</label>
+                    <input type="text" name="brand" id="formBrandInput" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="coffee-description">Description:</label>
-                    <textarea name="coffee-description" id="description" class="form-control"></textarea>
+                    <label for="formDescriptionInput">Description:</label>
+                    <textarea name="description" id="formDescriptionInput" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="price">Price:</label>
-                    <input type="number" min="0" name="price" id="price" class="form-control">
-                    <label for="grams">Grams:</label>
-                    <input type="number" min="0" name="grams" id="grams" class="form-control">
+                    <label for="formPriceInput">Price:</label>
+                    <input type="number" min="0" name="price" id="formPriceInput" class="form-control">
+                    <label for="formGramsInput">Grams:</label>
+                    <input type="number" min="0" name="grams" id="formGramsInput" class="form-control">
                 </div>
-                <div class="form-group">
+                   <div class="form-group">
                     <label for="img">upload image:</label>
                     <input type="file" name="img" id="img" accept="image/*">
                 </div>
-                <button type="submit" class="btn btn-custom" id="coffeeSubmitBtn">Submit Coffee</button>
+                <button type="submit" class="btn btn-custom" if="coffeeSubmitBtn">Submit Coffee</button>
+
             </form>
         </aside>
