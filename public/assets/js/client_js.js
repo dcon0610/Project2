@@ -4,16 +4,18 @@ $(document).ready(function() {
  
 
     $("#coffeeSubmitBtn").click( function(event) {
+      event.preventDefault();
         var data = {
-            name: $(`#name`).val().trim(),
+            blend_name: $(`#name`).val().trim(),
             brand:$(`#brand`).val().trim(),
-            description:$(`#description`).val().trim(),
+            coffee_description:$(`#description`).val().trim(),
             price:$(`#price`).val().trim(),
-            grams: $(`#grams`).val().trim(),
+            weight_grams: $(`#grams`).val().trim(),
+            img: $(`#img`).val().trim(),
           };
        //send ajax call with the id, which will pick out the reviews with the id of this.id
     
-       $.ajax("/coffee/add-coffee", {
+       $.ajax("/api/coffees", {
         type: "POST",
         data: data
       }).then(
@@ -26,7 +28,7 @@ $(document).ready(function() {
       );
     
 
-})
+});
 
 for (var i=0; i<5; i++) {
 $(`#${i}`).click( function(event) {
@@ -51,6 +53,6 @@ $(`#${i}`).click( function(event) {
 
 
         }
-    });
+});
  
 
