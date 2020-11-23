@@ -1,11 +1,8 @@
 var express = require("express");
-
 var router = express.Router();
-
 
 // load models eg db.Coffee
 var db = require("../models");
-
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
@@ -57,36 +54,27 @@ router.post("/api/coffees", function(req, res) {
 
 });
 
+router.post("/api/reviews/:id", function(req, res) {
+  // id refers to the id of the coffee being reviewed
 
-router.post("/coffee/add-coffee", function(req, res) {
+  // create new review in db
+  db.User.create({
+    user_name: req.body.user_name
+  })
+    .then(function(newUser){
+        db.Review.create({
+        review_text:         req.body.review,
+        rating:              req.body.rating,
+        UserId:              newUser.id,
+        CoffeeId:            res.param.id
+      })
+        .then(function(newReview){
+          console.log(newReview);
+        })
+    })
+  
 
-
-  console.log("received post", req.body)
-  const id =  1
-  res.json({"working": 24})
-    //coffee.create();
-  });
-
-//router.put("/api/coffees/:id", function(req, res) {
-//   var condition = "id = " + req.params.id;
-
-//   console.log("condition", condition);
-
-//   coffee.update(
-//     {
-//       sleepy: req.body.sleepy
-//     },
-//     condition,
-//     function(result) {
-//       if (result.changedRows === 0) {
-//         // If no rows were changed, then the ID must not exist, so 404
-//         return res.status(404).end();
-//       }
-//       res.status(200).end();
-
-//     }
-//   );
-// });
+});
 
 // Export routes for server.js to use.
 module.exports = router;
