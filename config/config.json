@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Mylocalhost34",
-    "database": "sequelize_db",
-    "host": "127.0.0.1",
+    "username": "q1hw12w30odg5y0h",
+    "password": "v7zieqam9tk9ysl1",
+    "database": "grv10hc9r207k7e1",
+    "host": "aqx5w9yc5brambgl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
