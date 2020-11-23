@@ -2,8 +2,10 @@ var express = require("express");
 
 var router = express.Router();
 
+
 // load models eg db.Coffee
 var db = require("../models");
+
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
@@ -27,24 +29,25 @@ router.get("/", function(req, res) {
 
 
       coffee: [ 
-        {blendName: "Instant", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[
-          {id: 1, userName: 'David', reviewBody: 'this is an awesome coffee', rating:3}]},
-        {blendName: "Arabica", brandname: "B3", description: "yummy", averageRating: "4", price: 60, grams: 100, 
+        {id: 1,blendName: "Instant", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[
+          { userName: 'David', reviewBody: 'this is an awesome coffee', rating:3}]},
+        {id: 2, blendName: "Arabica", brandname: "B3", description: "yummy", averageRating: "4", price: 60, grams: 100, 
           review:[{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},
-          {id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4}]},
-        {blendName: "New Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4}]},
-        {blendName: "Stale Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 4}]}
+          {id: 3, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4},{id: 2, userName: 'David', reviewBody: 'this is an awesomer coffee', rating: 4}]},
+        {id:3, blendName: "New Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Nick', reviewBody: 'this is an awesomer coffee', rating: 4}]},
+        {id: 4, blendName: "Stale Coffee", brandname: "B3", description: "yummy", averageRating: "4", price: 40, grams: 100, review:[ {id: 2, userName: 'Daniel', reviewBody: 'this is an awesomer coffee', rating: 4}]}
 
       ],
 
   }
 
-    console.log(hbsObject)
+   
 
      res.render("index", hbsObject);
 
     })
  
+
 
 
 
@@ -60,7 +63,18 @@ router.post("/api/coffees", function(req, res) {
   }).then(function(dbCoffee){
     console.log(dbCoffee);
   })
+
 });
+
+
+router.post("/coffee/add-coffee", function(req, res) {
+
+
+  console.log("received post", req.body)
+  const id =  1
+  res.json({"working": 24})
+    //coffee.create();
+  });
 
 //router.put("/api/coffees/:id", function(req, res) {
 //   var condition = "id = " + req.params.id;
