@@ -24,6 +24,7 @@
             <hr>
             <form> <!-- form for submitting a coffee for review -->
                 <div class="form-group">
+
                     <label for="formNameInput">Name of Blend:</label>
                     <input type="text" name="name" id="formNameInput" class="form-control">
                 </div>
@@ -41,6 +42,11 @@
                     <label for="formGramsInput">Grams:</label>
                     <input type="number" min="0" name="grams" id="formGramsInput" class="form-control">
                 </div>
+                   <div class="form-group">
+                    <label for="img">upload image:</label>
+                    <input type="file" name="img" id="img" accept="image/*">
+                </div>
                 <button type="submit" class="btn btn-custom" if="coffeeSubmitBtn">Submit Coffee</button>
+
             </form>
         </aside>

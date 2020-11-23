@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes){
         },
 
     });
+    // add foreign keys
     Review.associate = (models) => {
-        // {foreignKey: 'ID', as: 'coffee_id'}
         Review.belongsTo(models.Coffee);
         Review.belongsTo(models.User);
       };

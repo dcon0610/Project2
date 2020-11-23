@@ -10,5 +10,8 @@ module.exports = function(sequelize, DataTypes){
         },
         img: DataTypes.STRING
     });
+    Coffee.associate = (models) => {
+        Coffee.hasMany(models.Review);
+    };
     return Coffee;
 }

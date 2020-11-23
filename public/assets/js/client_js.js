@@ -24,8 +24,10 @@ $(document).ready(function() {
     
           // Reload the page to get the updated list
           location.reload();
+
         });
 });
+
 
   // Submit a review for a coffee
   // (trying an alternative format)
