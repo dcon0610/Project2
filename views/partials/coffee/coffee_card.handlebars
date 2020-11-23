@@ -4,18 +4,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-3"> <!-- image pane --> 
-                        {image}
+                        <img src={{img}} >
                     </div>
                     <div class="col-6"> <!-- main coffee content pane -->
-                        <h4><strong>{{blendName}}</strong> <em>by</em> <strong>{{brandName}}</strong></h4>
-                        <p>{{description}}</p>
+                        <h4><strong>{{blend_name}}</strong> <em>by</em> <strong>{{brand}}</strong></h4>
+                        <p>{{coffee_description}}</p>
                     </div>
                     <div class="col-3"> <!-- details pane -->
                         <div class="row"> <!-- rating -->
                             <p><h4>{{averageRating}}</h4> /5 </p>
                         </div>
                         <div class="row"> <!-- price -->
-                            <p><strong>${{price}}</strong> <em>{{grams}} g</em> </p>
+                            <p><strong>${{price}}</strong> <em>{{weight_grams}} g</em> </p>
                         </div>
                     </div>
                 </div>

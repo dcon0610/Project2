@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 })
 
-for (var i=0; i<5; i++) {
+for (var i=0; i<4; i++) {
 $(`#${i}`).click( function(event) {
     var data = {
         name: $(`#name${this.id}`).val().trim(),
