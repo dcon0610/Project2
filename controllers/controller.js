@@ -5,8 +5,6 @@ var router = express.Router();
 // load models eg db.Coffee
 var db = require("../models");
 
-console.log(coffee)
-
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
 

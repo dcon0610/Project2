@@ -1,4 +1,6 @@
+
 module.exports = function(sequelize, DataTypes){
+    
     var Review = sequelize.define("Review", {
         review_text: DataTypes.TEXT,
         rating: {
@@ -6,26 +8,13 @@ module.exports = function(sequelize, DataTypes){
             allowNull: false,
             defaultValue: 0
         },
-        // foreign keys
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-              // This is a reference to another model
-              model: User,
-              // This is the column name of the referenced model
-              key: 'id',
-            }
-        },
 
-        coffe_id: {
-            type: DataTypes.INTEGER,
-            references: {
-              // This is a reference to another model
-              model: Coffee,
-              // This is the column name of the referenced model
-              key: 'id',
-            }
-        }
     });
+    Review.associate = (models) => {
+        // {foreignKey: 'ID', as: 'coffee_id'}
+        Review.belongsTo(models.Coffee);
+        Review.belongsTo(models.User);
+      };
+    
     return Review;
 }
