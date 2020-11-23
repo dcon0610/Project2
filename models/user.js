@@ -1,14 +1,6 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connection.js");
-
-var User = sequelize.define("users", {
-    user_name: Sequelize.STRING
-  }, {
-    freezeTableName: true
-  });
-
-  // Syncs with DB
-  User.sync();
-  
-  // Makes the Coffee Model available for other files (will also create a table)
-  module.exports = User;
+module.exports = function(sequelize, DataTypes){
+    var User = sequelize.define("User", {
+        user_name: DataTypes.STRING
+    });
+    return User;
+}

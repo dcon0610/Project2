@@ -1,21 +1,20 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connection.js");
-const Coffee = require("../models/coffee.js");
-const User = require("../models/coffee.js");
 
-var Review = sequelize.define("reviews", {
-    rating: Sequelize.DECIMAL(10, 2).UNSIGNED,
-    review_text: Sequelize.TEXT,
-  }, {
-    freezeTableName: true
-  });
-  
-//   add foreign key
-Review.belongsTo(Coffee); //coffeesId
-Review.belongsTo(User);
+module.exports = function(sequelize, DataTypes){
+    
+    var Review = sequelize.define("Review", {
+        review_text: DataTypes.TEXT,
+        rating: {
+            type: DataTypes.DECIMAL(3, 2).UNSIGNED,
+            allowNull: false,
+            defaultValue: 0
+        },
 
-  // Syncs with DB
-//   Review.sync();
-  
-  // Makes the Coffee Model available for other files (will also create a table)
-  module.exports = Review;
+    });
+    Review.associate = (models) => {
+        // {foreignKey: 'ID', as: 'coffee_id'}
+        Review.belongsTo(models.Coffee);
+        Review.belongsTo(models.User);
+      };
+    
+    return Review;
+}
