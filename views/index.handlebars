@@ -55,22 +55,26 @@
             <hr>
             <form id="addCoffeeForm"> <!-- form for submitting a coffee for review -->
                 <div class="form-group">
-                    <label for="formBlendInput">Name of Blend:</label>
+                    <label for="name">Name of Blend:</label>
                     <input type="text" name="name" id="name" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="formBrandInput">Brand:</label>
+                    <label for="brand">Brand:</label>
                     <input type="text" name="brand" id="brand" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="formDescriptionInput">Description:</label>
+                    <label for="coffee-description">Description:</label>
                     <textarea name="coffee-description" id="description" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="formPriceInput">Price:</label>
+                    <label for="price">Price:</label>
                     <input type="number" min="0" name="price" id="price" class="form-control">
-                    <label for="formGramsInput">Grams:</label>
+                    <label for="grams">Grams:</label>
                     <input type="number" min="0" name="grams" id="grams" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="img">upload image:</label>
+                    <input type="file" name="img" id="img" accept="image/*">
                 </div>
                 <button type="submit" class="btn btn-custom" id="coffeeSubmitBtn">Submit Coffee</button>
             </form>
