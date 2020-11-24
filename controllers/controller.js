@@ -10,8 +10,6 @@ router.get("/", function(req, res) {
 
   // get all coffees
   db.Coffee.findAll({
-      // attributes: ['blend_name', 'brand', 'weight_grams', 'price', 
-      //           [sequelize.fn('sum', sequelize.col('rating')), ]],
       include: 
         [{
           model: db.Review,
@@ -22,40 +20,37 @@ router.get("/", function(req, res) {
         }]
     })
     .then(function(dbcoffees){
-      let data = [];
-      dbcoffees.map(function(coffee){
-        data.push(coffee.dataValues);
-      });
-      console.log(`review plain test ${JSON.stringify(data[1].Reviews)}`);
-      console.log(`review plain test ${(data[1].Reviews)}`);
-      console.log(`data values test ${JSON.stringify(data[0].Reviews[0].rating)}`);
-      console.log(`review length test ${JSON.stringify(data[0].Reviews.length)}`);
-      console.log(`data length test ${JSON.stringify(data.length)}`);
 
-      for (let i = 0; i < data.length; i++){
+      // map the data to an array in order to have reviews nested inside each coffee object
+      let dbData = [];
+      dbcoffees.map(function(coffee){
+        dbData.push(coffee.dataValues);
+      });
+
+      // calculate the average rating for each coffee
+      for (let i = 0; i < dbData.length; i++){
         let aveRating =0;
         let count = 0;
-        for (let j = 0; j < data[i].Reviews.length; j++){
-          aveRating += parseFloat(data[i].Reviews[j].rating);
-          console.log(`inside loop avRating ${aveRating}`);
-          console.log(`inside loop ${(data[i].Reviews[j].rating)}`);
-          // aveRating = aveRating + parseInt(JSON.stringify(data[i].Reviews[j].rating)) ;
+        for (let j = 0; j < dbData[i].Reviews.length; j++){
+          aveRating += parseFloat(dbData[i].Reviews[j].rating);
           count++;
-          console.log( `count: ${count}`);
         }
-        console.log(`outside loop avRating ${aveRating}`);
         aveRating = aveRating/count;
-        console.log( `count: ${count}`);
         console.log(aveRating);
-
-        data[i].rating = aveRating;
-        console.log(`data[i].rating ${data[i].rating}`);
+        // add average rating to each coffee
+        dbData[i].rating = aveRating;
+        console.log(`data[i].rating ${dbData[i].rating}`);
       }
       // to get reviews:
-      // data[i].Reviews: [array] || data[i].Reviews: [array], [array]
-      console.log(data);
+      // data[index].Reviews[index].{{review property name eg review_text}}
+      console.log(dbData);
 
-        var hbsObject ={coffee: data};
+      // order coffees by highest rating
+      dbData.sort(function (x, y){
+        return y.rating - x.rating;
+      });
+
+        var hbsObject ={coffee: dbData};
 
         res.render("index", hbsObject);
     });
