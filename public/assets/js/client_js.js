@@ -69,12 +69,16 @@ $(document).ready(function() {
   //     function(result) {
   //       console.log("created new id:", result);
 
+
+   //     }
+
   //       // Reload the page to get the updated list
   //       location.reload();
   //     }
   //   );
   // });
   // }
+
 });
  
 

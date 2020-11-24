@@ -7,22 +7,32 @@ var db = require("../models");
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
 
-  // get data for coffees from db
+  // get all coffees
+  db.Coffee.findAll({
+      include: 
+        [{
+          model: db.Review,
+          raw: true,
+          include: 
+            [{  model: db.User,
+              }]
+        }]
+    })
+    .then(function(dbcoffees){
+      let data = [];
+      dbcoffees.map(function(coffee){
+        data.push(coffee.dataValues);
+      })
+      // to get reviews:
+      // data[i].Reviews: [array] || data[i].Reviews: [array], [array]
+      console.log(data);
 
-  // get all coffees with reviews
-  db.Coffee.findAll({ include: [{
-    model: db.Review,
-    include: [{
-      model: db.User
-    }]
-  }], 
-  raw: true
-  }).then(function(dbReviews){
-      var hbsObject ={coffee: dbReviews}
-      console.log("this is the returned value:",dbReviews) ;
-      res.render("index", hbsObject);
+        var hbsObject ={coffee: data};
+
+        res.render("index", hbsObject);
     });
-  });
+  })
+
  
 // POST a new coffee
 router.post("/api/coffee", function(req, res) {
