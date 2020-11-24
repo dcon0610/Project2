@@ -3,20 +3,6 @@ $(document).ready(function() {
     
   // Submit a new coffee
     $("#coffeeSubmitBtn").click( function(event) {
-<<<<<<< HEAD
-      event.preventDefault();
-        var data = {
-            blend_name: $(`#name`).val().trim(),
-            brand:$(`#brand`).val().trim(),
-            coffee_description:$(`#description`).val().trim(),
-            price:$(`#price`).val().trim(),
-            weight_grams: $(`#grams`).val().trim(),
-            img: $(`#img`).val().trim(),
-          };
-       //send ajax call with the id, which will pick out the reviews with the id of this.id
-    
-       $.ajax("/api/coffees", {
-=======
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
 
@@ -26,11 +12,11 @@ $(document).ready(function() {
             description:$(`#formDescriptionInput`).val().trim(),
             price:$(`#formPriceInput`).val().trim(),
             grams: $(`#formGramsInput`).val().trim(),
+            img: $(`#formImgInput`).files[0]
           };
       
       //send ajax call with the id, which will create this coffee at a new id
-      $.ajax("/coffee/add-coffee", {
->>>>>>> c55247c1d59d68a66ba331f47d753adc060adbe2
+      $.ajax("/api/coffee", {
         type: "POST",
         data: data
       }).then(
@@ -40,10 +26,7 @@ $(document).ready(function() {
           // Reload the page to get the updated list
           location.reload();
 
-<<<<<<< HEAD
-=======
         });
->>>>>>> c55247c1d59d68a66ba331f47d753adc060adbe2
 });
 
 
@@ -56,12 +39,12 @@ $(document).ready(function() {
     console.log(`Event target id is ${event.target.id}. Coffee id is ${coffeeID}`);
     // create data packet
     var newReview = {
-      name: $(`#reviewInputUserName${coffeeID}`).val().trim(),
-      review_text: $(`#reviewInputTextbox${coffeeID}`).val().trim(),
+      user_name: $(`#reviewInputUserName${coffeeID}`).val().trim(),
+      review: $(`#reviewInputTextbox${coffeeID}`).val().trim(),
       rating: $(`#reviewInputRating${coffeeID}`).val().trim()
     };
     // send ajax
-    $.ajax("/coffee/add-review",{
+    $.ajax(`/api/reviews/${coffeeID}`,{
       type: "POST",
       data: newReview
     }).then(function(result){
@@ -86,16 +69,16 @@ $(document).ready(function() {
   //     function(result) {
   //       console.log("created new id:", result);
 
-<<<<<<< HEAD
-        }
-=======
+
+   //     }
+
   //       // Reload the page to get the updated list
   //       location.reload();
   //     }
   //   );
   // });
   // }
->>>>>>> c55247c1d59d68a66ba331f47d753adc060adbe2
+
 });
  
 
