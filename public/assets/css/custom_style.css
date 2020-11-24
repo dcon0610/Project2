@@ -28,6 +28,10 @@ li {
     box-shadow: 0 0 5px rgb(125,125,125);
 }
 
+.coffeeCard img {
+    max-height: 10rem;
+}
+
 .reviewsCollapserLink {
     display: block;
     text-align: center;
