@@ -28,7 +28,8 @@
                     <div class="row"> <!-- reviews section -->
                         <div class="col-12">
                             <ul class="list-group">
-                                {{#each review}}
+                                {{!-- changed name to match name coming from db --}}
+                                {{#each coffee.Reviews}}
                                     {{> coffee/review_card}}
                                 {{/each}}
                             </ul>
