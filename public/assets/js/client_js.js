@@ -12,10 +12,11 @@ $(document).ready(function() {
             description:$(`#formDescriptionInput`).val().trim(),
             price:$(`#formPriceInput`).val().trim(),
             grams: $(`#formGramsInput`).val().trim(),
+            img: $(`#formImgInput`).files[0]
           };
       
       //send ajax call with the id, which will create this coffee at a new id
-      $.ajax("/coffee/add-coffee", {
+      $.ajax("/api/coffee", {
         type: "POST",
         data: data
       }).then(
@@ -38,12 +39,12 @@ $(document).ready(function() {
     console.log(`Event target id is ${event.target.id}. Coffee id is ${coffeeID}`);
     // create data packet
     var newReview = {
-      name: $(`#reviewInputUserName${coffeeID}`).val().trim(),
-      review_text: $(`#reviewInputTextbox${coffeeID}`).val().trim(),
+      user_name: $(`#reviewInputUserName${coffeeID}`).val().trim(),
+      review: $(`#reviewInputTextbox${coffeeID}`).val().trim(),
       rating: $(`#reviewInputRating${coffeeID}`).val().trim()
     };
     // send ajax
-    $.ajax("/coffee/add-review",{
+    $.ajax(`/api/reviews/${coffeeID}`,{
       type: "POST",
       data: newReview
     }).then(function(result){
