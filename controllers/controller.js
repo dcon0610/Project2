@@ -60,22 +60,6 @@ router.get("/", function(req, res) {
  
 // POST a new coffee
 router.post("/api/coffee", function(req, res) {
-  // image manipulation if image attached
-  
-    //let uploadedImg = req.body.img;
-    //let imgName = uploadedImg.name;
-    //console.log(`received image with name ${imgName}`);
-    // file location to pass into the DB is...
-    //let savePath = "./assets/img/"+imgName;
-    // file is a binary file, so... read buffer...
-    // uploadedImg.arrayBuffer().then(buffer){
-      // write it to a file on server-side
-      // fs.writeFile(savePath, buffer, function(error){
-        // if (error) throw error;
-        // console.log("File received and saved");
-      //});
-    //}
-  
 
   // create new coffee in db
   db.Coffee.create({
@@ -84,7 +68,7 @@ router.post("/api/coffee", function(req, res) {
     coffee_description: req.body.description,
     price:              req.body.price,
     weight_grams:       req.body.grams,
-    //img:                savePath
+    img:                req.body.img
   }).then(function(dbCoffee){
     console.log(dbCoffee);
     res.sendStatus(200)
