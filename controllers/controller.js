@@ -38,9 +38,8 @@ router.get("/", function(req, res) {
         aveRating = aveRating/count;
         console.log(aveRating);
         // add average rating to each coffee
-        dbData[i].rating = aveRating.toFixed(2);
-        console.log(`data[i].rating ${dbData[i].rating}`);
-        //console.log(`data[i].Reviews[0].User.user_name ${JSON.stringify(dbData[i].Reviews[0].User.user_name)}`);
+        dbData[i].rating = aveRating.toFixed(1);
+
       }
       // to get reviews:
       // data[index].Reviews[index].{{review property name eg review_text}}
@@ -69,6 +68,7 @@ router.post("/api/coffee", function(req, res) {
     price:              req.body.price,
     weight_grams:       req.body.grams,
     img:                req.body.img
+
   }).then(function(dbCoffee){
     console.log(dbCoffee);
     res.sendStatus(200)

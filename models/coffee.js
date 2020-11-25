@@ -8,7 +8,10 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false
         },
-        img: DataTypes.STRING
+        img: {
+            type: DataTypes.STRING,
+            defaultValue: "https://res.cloudinary.com/dw7h2b2j3/image/upload/v1606298876/default_coffee_dsebfg.jpg"
+        }
     });
     Coffee.associate = (models) => {
         Coffee.hasMany(models.Review);

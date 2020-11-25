@@ -12,16 +12,19 @@ $("#coffeeSubmitBtn").click( function(event) {
   // get image from page
   let imgToUpload = $(`#formImgInput`)[0].files[0];
   console.log(imgToUpload);
-  //send to cloudinary
-  fetch(cloudUploadURL, {
-    method: "POST",
-    body: {
-      file: imgToUpload,
-      upload_preset: "jmn6ot8z"
-    }
-  }).then(function (response){
-    console.log(response);
+  var formData = new FormData();
+  formData.append('file', imgToUpload);
+  formData.append('upload_preset', "jmn6ot8z");
 
+  $.ajax(cloudUploadURL, {
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+  }).then(function(res){
+    console.log(res);
+    if (res){
+       const imageURL = res.secure_url;
     //send ajax call, which will create this coffee at a new id
     $.ajax("/api/coffee", {
       type: "POST",
@@ -31,7 +34,7 @@ $("#coffeeSubmitBtn").click( function(event) {
         description:$(`#formDescriptionInput`).val().trim(),
         price:$(`#formPriceInput`).val().trim(),
         grams: $(`#formGramsInput`).val().trim(),
-        img: response.secure_url
+        img: imageURL
       }
     }).then(
       function(result) {
@@ -40,8 +43,12 @@ $("#coffeeSubmitBtn").click( function(event) {
         // Reload the page to get the updated list
         location.reload();
 
-      });
-    });
+    })
+  }
+  });
+   
+    
+    
 });
 
 
