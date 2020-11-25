@@ -92,19 +92,39 @@ router.post("/api/coffee", function(req, res) {
 router.post("/api/reviews/:id", function(req, res) {
   // id refers to the id of the coffee being reviewed
 
-  // create new review in db
-  db.User.create({
-    user_name: req.body.user_name
-  }).then(function(newUser){
-    db.Review.create({
-    review_text:         req.body.review,
-    rating:              req.body.rating,
-    UserId:              newUser.id,
-    CoffeeId:            res.param.id
-    }).then(function(newReview){
-      console.log(newReview);
-    });
-  });
+  // check if the username already exists
+  db.User.findAll({where: 
+                      { user_name: req.body.user_name }
+                    })
+                    .then(function(returnedUser){
+                      // if there is not a user with the same name create new user
+                      if (!returnedUser){
+                          // create new review in db
+                            db.User.create({
+                              user_name: req.body.user_name
+                            }).then(function(newUser){
+                              db.Review.create({
+                              review_text:         req.body.review,
+                              rating:              req.body.rating,
+                              UserId:              newUser.id,
+                              CoffeeId:            res.param.id
+                              }).then(function(newReview){
+                                console.log(newReview);
+                              });
+                            });
+                      } else {
+                        // dont create a new user and use the id of the user returned from the db
+                        db.Review.create({
+                          review_text:         req.body.review,
+                          rating:              req.body.rating,
+                          UserId:              returnedUser.id,
+                          CoffeeId:            res.param.id
+                          }).then(function(newReview){
+                            console.log(newReview);
+                          });
+                      }
+                    })
+  
 });
 
 // Export routes for server.js to use.
