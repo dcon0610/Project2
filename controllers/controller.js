@@ -40,7 +40,7 @@ router.get("/", function(req, res) {
         // add average rating to each coffee
         dbData[i].rating = aveRating.toFixed(2);
         console.log(`data[i].rating ${dbData[i].rating}`);
-        console.log(`data[i].Reviews[0].User.user_name ${JSON.stringify(dbData[i].Reviews[0].User.user_name)}`);
+        //console.log(`data[i].Reviews[0].User.user_name ${JSON.stringify(dbData[i].Reviews[0].User.user_name)}`);
       }
       // to get reviews:
       // data[index].Reviews[index].{{review property name eg review_text}}
@@ -61,12 +61,12 @@ router.get("/", function(req, res) {
 // POST a new coffee
 router.post("/api/coffee", function(req, res) {
   // image manipulation if image attached
-  if (req.body.img){
-    let uploadedImg = req.body.img;
-    let imgName = uploadedImg.name;
-    console.log(`received image with name ${imgName}`);
+  
+    //let uploadedImg = req.body.img;
+    //let imgName = uploadedImg.name;
+    //console.log(`received image with name ${imgName}`);
     // file location to pass into the DB is...
-    let savePath = "./assets/img/"+imgName;
+    //let savePath = "./assets/img/"+imgName;
     // file is a binary file, so... read buffer...
     // uploadedImg.arrayBuffer().then(buffer){
       // write it to a file on server-side
@@ -75,7 +75,7 @@ router.post("/api/coffee", function(req, res) {
         // console.log("File received and saved");
       //});
     //}
-  }
+  
 
   // create new coffee in db
   db.Coffee.create({
@@ -87,6 +87,7 @@ router.post("/api/coffee", function(req, res) {
     //img:                savePath
   }).then(function(dbCoffee){
     console.log(dbCoffee);
+    res.sendStatus(200)
   });
 });
 
