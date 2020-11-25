@@ -1,16 +1,16 @@
 /* THIS FILE IS FOR CLIENT_SIDE SCRIPTING, SUCH AS BUTTON AJAX CALLS AND FORMS */
-require('dotenv').load();
-var fs = require('fs');
-var cloudinary = require('cloudinary').v2;
+// require('dotenv').load();
+// var fs = require('fs');
+// var cloudinary = require('cloudinary').v2;
 
-var uploads = {};
+// var uploads = {};
 
-// set your env variable CLOUDINARY_URL or set the following configuration
-  cloudinary.config({
-  cloud_name: 'dw7h2b2j3',
-  api_key: '726743923128258',
-  api_secret: '2I8mhasqCRST2C7le6sUl-5V6dg'
-}); 
+// // set your env variable CLOUDINARY_URL or set the following configuration
+//   cloudinary.config({
+//   cloud_name: 'dw7h2b2j3',
+//   api_key: '726743923128258',
+//   api_secret: '2I8mhasqCRST2C7le6sUl-5V6dg'
+// }); 
 
 
 $(document).ready(function() {
