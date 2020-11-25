@@ -4,13 +4,13 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-3"> <!-- user pane --> 
-                    <strong>{{userName}}</strong>
+                    <strong>{{dataValues.User.dataValues.user_name}}</strong>
                 </div>
                 <div class="col-6"> <!-- main review content pane -->
-                    <p>{{review_text}}</p>
+                    <p>{{dataValues.review_text}}</p>
                 </div>
                 <div class="col-3"> <!-- details pane -->
-                    <p><strong>{{rating}}</strong> /5 </p>
+                    <p><strong>{{dataValues.rating}}</strong> /5 </p>
                 </div>
             </div>
         </div>

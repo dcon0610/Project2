@@ -51,7 +51,7 @@ router.get("/", function(req, res) {
       });
 
         var hbsObject ={coffee: dbData};
-
+        console.log("this is the object", hbsObject.coffee[0].Reviews[0].User)
         res.render("index", hbsObject);
     });
   })
@@ -89,7 +89,7 @@ router.post("/api/coffee", function(req, res) {
   });
 });
 
-router.post("/api/reviews/", function(req, res) {
+router.post("/api/reviews", function(req, res) {
   // check if the username already exists
   db.User.findOne({where: 
                       { user_name: req.body.user_name }
@@ -124,6 +124,7 @@ router.post("/api/reviews/", function(req, res) {
                             console.log(newReview);
                           });
                       }
+                      res.sendStatus(200)
                     })
   
 });

@@ -45,12 +45,13 @@ $(document).ready(function() {
       rating: $(`#reviewInputRating${coffeeID}`).val()
     };
     // send ajax
-    $.ajax(`/api/reviews/`,{
+    $.ajax(`/api/reviews`,{
       type: "POST",
       data: newReview
     }).then(function(result){
       console.log("Review submitted.");
       // refresh the page
+      $('.submitReviewBtn').prop('disabled', true);
       location.reload();
     });
   });
