@@ -59,7 +59,6 @@ router.get("/", function(req, res) {
  
 // POST a new coffee
 router.post("/api/coffee", function(req, res) {
-  
 
   // create new coffee in db
   db.Coffee.create({
@@ -68,7 +67,7 @@ router.post("/api/coffee", function(req, res) {
     coffee_description: req.body.description,
     price:              req.body.price,
     weight_grams:       req.body.grams,
-    // img:                imageURL
+    img:                req.body.img
   }).then(function(dbCoffee){
     console.log(dbCoffee);
     res.sendStatus(200)
