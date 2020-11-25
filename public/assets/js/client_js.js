@@ -39,12 +39,13 @@ $(document).ready(function() {
     console.log(`Event target id is ${event.target.id}. Coffee id is ${coffeeID}`);
     // create data packet
     var newReview = {
+      coffeeID: coffeeID,
       user_name: $(`#reviewInputUserName${coffeeID}`).val().trim(),
       review: $(`#reviewInputTextbox${coffeeID}`).val().trim(),
-      rating: $(`#reviewInputRating${coffeeID}`).val().trim()
+      rating: $(`#reviewInputRating${coffeeID}`).val()
     };
     // send ajax
-    $.ajax(`/api/reviews/${coffeeID}`,{
+    $.ajax(`/api/reviews/`,{
       type: "POST",
       data: newReview
     }).then(function(result){

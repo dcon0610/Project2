@@ -89,16 +89,16 @@ router.post("/api/coffee", function(req, res) {
   });
 });
 
-router.post("/api/reviews/:id", function(req, res) {
-  // id refers to the id of the coffee being reviewed
-
+router.post("/api/reviews/", function(req, res) {
   // check if the username already exists
-  db.User.findAll({where: 
+  db.User.findOne({where: 
                       { user_name: req.body.user_name }
                     })
                     .then(function(returnedUser){
+                      console.log(`returned user: ${returnedUser}`);
                       // if there is not a user with the same name create new user
-                      if (!returnedUser){
+                      if (returnedUser==null){
+                          console.log(`user name does not exist`);
                           // create new review in db
                             db.User.create({
                               user_name: req.body.user_name
@@ -107,18 +107,19 @@ router.post("/api/reviews/:id", function(req, res) {
                               review_text:         req.body.review,
                               rating:              req.body.rating,
                               UserId:              newUser.id,
-                              CoffeeId:            res.param.id
+                              CoffeeId:            req.body.coffeeID
                               }).then(function(newReview){
                                 console.log(newReview);
                               });
                             });
                       } else {
+                        
                         // dont create a new user and use the id of the user returned from the db
                         db.Review.create({
                           review_text:         req.body.review,
                           rating:              req.body.rating,
                           UserId:              returnedUser.id,
-                          CoffeeId:            res.param.id
+                          CoffeeId:            req.body.coffeeID
                           }).then(function(newReview){
                             console.log(newReview);
                           });
