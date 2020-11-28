@@ -10,7 +10,6 @@
 <div class="container-fluid">
     <div class="row">
         <main class="col-9"><!-- main content area -->
-            <p>To see individual reviews, click to expand on a coffee.</p>
             <ul class="list-group">
                 {{#each coffee}}
                     {{> coffee/coffee_card}}
@@ -19,7 +18,7 @@
         </main>
 
         <!-- side bar -->
-        <aside class="col-3" id="newCoffeePanel">
+        <aside class="col-3 sticky-top" id="newCoffeePanel">
             <h5>Add a coffee</h5>
             <hr>
             <form> <!-- form for submitting a coffee for review -->
@@ -50,3 +49,6 @@
 
             </form>
         </aside>
+
+    </div>
+</div>
