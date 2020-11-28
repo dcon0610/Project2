@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes){
     var Review = sequelize.define("Review", {
         review_text: DataTypes.TEXT,
         rating: {
-            type: DataTypes.DECIMAL(3, 2).UNSIGNED,
+            type: DataTypes.DECIMAL(3, 1).UNSIGNED,
             allowNull: false,
             defaultValue: 0
         },
