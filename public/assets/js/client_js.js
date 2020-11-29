@@ -7,6 +7,7 @@ $("#coffeeSubmitBtn").click( function(event) {
   // Make sure to preventDefault on a submit event.
   event.preventDefault();
 
+
   // cloudinary upload URL
   const cloudUploadURL = "https://api.cloudinary.com/v1_1/dw7h2b2j3/image/upload";
   // get image from page
@@ -78,32 +79,32 @@ $("#coffeeSubmitBtn").click( function(event) {
     });
   });
 
-  // for (var i=0; i<5; i++) {
-  // $(`#${i}`).click( function(event) {
-  //   var data = {
-  //       name: $(`#name${this.id}`).val().trim(),
-  //       review: $(`#review${this.id}`).val().trim()
-  //     };
-  //    //send ajax call with the id, which will pick out the reviews with the id of this.id
-  //   const reviewId = this.id
-  //   $.ajax("/coffee/add-review", {
-  //     type: "POST",
-  //     data: data
-  //   }).then(
-  //     function(result) {
-  //       console.log("created new id:", result);
+  $("#filterByBrand").on("change",function(){
+    //Getting Value
+    var selectedBrand = $("#filterByBrand").val();
+    //Setting Value
+   console.log("selectedbrand", selectedBrand)
 
-
-   //     }
-
-  //       // Reload the page to get the updated list
-  //       location.reload();
-  //     }
-  //   );
-  // });
-  // }
-
-
+    $.ajax(`/brand`,{
+      type: "POST",
+      data: {value: selectedBrand}
+    }).then(function(result){
+      console.log("sucess")
+      location.reload();
+  
+    });
+});
+$("#reset").click(function(event){
+  event.preventDefault();
+  location.reload()
+  $.ajax(`/reset`,{
+    type: "GET",
+  }).then(function(result){
+    console.log("sucess")
+    location.reload();
+   
+  });
+})
   
 
 });

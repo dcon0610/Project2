@@ -4,57 +4,32 @@ var router = express.Router();
 
 // load models eg db.Coffee
 var db = require("../models");
-
+var whereClause=''
+var brand=[]
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
 
-  // get all coffees
-  db.Coffee.findAll({
-      include: 
-        [{
-          model: db.Review,
-          raw: true,
-          include: 
-            [{  model: db.User,
-              }]
-        }]
-    })
-    .then(function(dbcoffees){
+getAll(res, whereClause )
 
-      // map the data to an array in order to have reviews nested inside each coffee object
-      let dbData = [];
-      dbcoffees.map(function(coffee){
-        dbData.push(coffee.dataValues);
-      });
-
-      // calculate the average rating for each coffee
-      for (let i = 0; i < dbData.length; i++){
-        let aveRating =0;
-        let count = 0;
-        for (let j = 0; j < dbData[i].Reviews.length; j++){
-          aveRating += parseFloat(dbData[i].Reviews[j].rating);
-          count++;
-        }
-        aveRating = aveRating/count;
-        console.log(aveRating);
-        // add average rating to each coffee
-        dbData[i].rating = aveRating.toFixed(1);
-
-      }
-      // to get reviews:
-      // data[index].Reviews[index].{{review property name eg review_text}}
-      console.log(dbData);
-
-      // order coffees by highest rating
-      dbData.sort(function (x, y){
-        return y.rating - x.rating;
-      });
-
-        var hbsObject ={coffee: dbData};
-        console.log("this is the object", hbsObject.coffee[0].Reviews[0].User)
-        res.render("index", hbsObject);
-    });
   })
+
+  router.get("/reset", function(req, res) {
+    whereClause=''
+    getAll(res, whereClause )
+    
+      })
+
+  router.post("/brand", function(req, res) {
+    if (req.body.value==="pick brand"){
+      whereClause=""
+    }
+    else 
+    whereClause={brand: req.body.value}
+
+    getAll(res, whereClause )
+    
+      })
+    
 
  
 // POST a new coffee
@@ -114,6 +89,69 @@ router.post("/api/reviews", function(req, res) {
                     })
   
 });
+
+
+
+function getAll(res,whereClause) {
+console.log("this is the wherwertwertwerteclause", whereClause)
+  // get all coffees
+  db.Coffee.findAll({where: whereClause,
+      include: 
+        [{
+          model: db.Review,
+          raw: true,
+          include: 
+            [{  model: db.User,
+              }]
+        }]
+    })
+    .then(function(dbcoffees){
+
+      // map the data to an array in order to have reviews nested inside each coffee object
+      let dbData = [];
+      dbcoffees.map(function(coffee){
+        dbData.push(coffee.dataValues);
+      });
+
+      // calculate the average rating for each coffee
+      for (let i = 0; i < dbData.length; i++){
+        let aveRating =0;
+        let count = 0;
+        for (let j = 0; j < dbData[i].Reviews.length; j++){
+          aveRating += parseFloat(dbData[i].Reviews[j].rating);
+          count++;
+        }
+        aveRating = aveRating/count;
+        console.log(aveRating);
+        // add average rating to each coffee
+        dbData[i].rating = aveRating.toFixed(1);
+
+      }
+      // to get reviews:
+      // data[index].Reviews[index].{{review property name eg review_text}}
+      //console.log(dbData);
+
+      // order coffees by highest rating
+      dbData.sort(function (x, y){
+        return y.rating - x.rating;
+      });
+      var i=0 
+      if (i===0) {
+      brand.push({value: `pick brand`})
+      var hbsObject ={coffee: dbData};
+      for (let i=0; i<hbsObject.coffee.length; i++){
+        brand.push({value: hbsObject.coffee[i].brand})
+      }
+
+      const brand1= [...new Map(brand.map(item => [JSON.stringify(item), item])).values()];
+      hbsObject.brand=brand1
+    }
+      
+       
+        //console.log("this is the object", hbsObject.brand)
+      res.render("index", hbsObject);
+    });
+}
 
 // Export routes for server.js to use.
 module.exports = router;

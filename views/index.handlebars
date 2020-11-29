@@ -11,6 +11,15 @@
     <div class="row">
         <main class="col-9"><!-- main content area -->
             <p>To see individual reviews, click to expand on a coffee.</p>
+            <span>
+                <label>Filter by brand:</label>
+                <select id="filterByBrand">
+                {{#each brand }}
+                 <option> {{value}} </option> 
+                {{/each}}
+                </select>
+            </span>
+            <span><button id="reset" class="btn btn-custom">reset page</button></span>
             <ul class="list-group">
                 {{#each coffee}}
                     {{> coffee/coffee_card}}
