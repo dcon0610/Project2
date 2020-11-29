@@ -12,21 +12,45 @@ $("#coffeeSubmitBtn").click( function(event) {
   const cloudUploadURL = "https://api.cloudinary.com/v1_1/dw7h2b2j3/image/upload";
   // get image from page
   let imgToUpload = $(`#formImgInput`)[0].files[0];
-  console.log(imgToUpload);
-  var formData = new FormData();
-  formData.append('file', imgToUpload);
-  formData.append('upload_preset', "jmn6ot8z");
 
-  $.ajax(cloudUploadURL, {
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-  }).then(function(res){
-    console.log(res);
-    if (res){
-       const imageURL = res.secure_url;
-    //send ajax call, which will create this coffee at a new id
+  // check if an image has been uploaded
+  if (imgToUpload){
+    console.log(imgToUpload);
+      var formData = new FormData();
+      formData.append('file', imgToUpload);
+      formData.append('upload_preset', "jmn6ot8z");
+
+      $.ajax(cloudUploadURL, {
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+      }).then(function(res){
+        console.log(res);
+        if (res){
+          const imageURL = res.secure_url;
+        //send ajax call, which will create this coffee at a new id
+        $.ajax("/api/coffee", {
+          type: "POST",
+          data: {
+            name: $(`#formNameInput`).val().trim(),
+            brand:$(`#formBrandInput`).val().trim(),
+            description:$(`#formDescriptionInput`).val().trim(),
+            price:$(`#formPriceInput`).val().trim(),
+            grams: $(`#formGramsInput`).val().trim(),
+            img: imageURL
+          }
+        }).then(
+          function(result) {
+            console.log("created new id:", result);
+
+            // Reload the page to get the updated list
+            location.reload();
+
+        })
+      }
+      });
+  } else { //if no image uploaded dont send img data
     $.ajax("/api/coffee", {
       type: "POST",
       data: {
@@ -35,21 +59,18 @@ $("#coffeeSubmitBtn").click( function(event) {
         description:$(`#formDescriptionInput`).val().trim(),
         price:$(`#formPriceInput`).val().trim(),
         grams: $(`#formGramsInput`).val().trim(),
-        img: imageURL
+        // img: imageURL
       }
     }).then(
       function(result) {
         console.log("created new id:", result);
-
         // Reload the page to get the updated list
         location.reload();
 
     })
   }
-  });
-   
-    
-    
+  
+ 
 });
 
 

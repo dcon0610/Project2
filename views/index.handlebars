@@ -10,6 +10,7 @@
 <div class="container-fluid">
     <div class="row">
         <main class="col-9"><!-- main content area -->
+<<<<<<< HEAD
             <p>To see individual reviews, click to expand on a coffee.</p>
             <span>
                 <label>Filter by brand:</label>
@@ -20,6 +21,8 @@
                 </select>
             </span>
             <span><button id="reset" class="btn btn-custom">reset page</button></span>
+=======
+>>>>>>> c54ac2c5f1bab420a008d4f969509946da057ae0
             <ul class="list-group">
                 {{#each coffee}}
                     {{> coffee/coffee_card}}
@@ -28,7 +31,7 @@
         </main>
 
         <!-- side bar -->
-        <aside class="col-3" id="newCoffeePanel">
+        <aside class="col-3 sticky-top" id="newCoffeePanel">
             <h5>Add a coffee</h5>
             <hr>
             <form> <!-- form for submitting a coffee for review -->
@@ -59,3 +62,6 @@
 
             </form>
         </aside>
+
+    </div>
+</div>
